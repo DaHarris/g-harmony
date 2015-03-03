@@ -16,4 +16,6 @@
       <% end %>
     </ul>
   </ul>
+  <%= link_to 'Like Post', post_like_path(post) %>
+  <h6><%= post.likes.size %></h6>
 <% end %>
