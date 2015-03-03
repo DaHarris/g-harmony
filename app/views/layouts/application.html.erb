@@ -8,6 +8,16 @@
   <%= javascript_include_tag "vendor/modernizr" %>
 </head>
 <body>
+<% if notice %>
+<%= notice %>
+<% end %>
+
+<% if current_user %>
+<%= link_to 'Sign Out', logout_path %>
+<% else %>
+<%= link_to 'Sign Up', signup_path %>
+<%= link_to 'Sign In', login_path %>
+<% end %>
 
 <%= yield %>
 
