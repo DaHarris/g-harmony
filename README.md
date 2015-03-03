@@ -27,7 +27,7 @@ Tags (Title:String(*))
 Have many Assignments
 Have many Posts through Assignments
 
-Comments (user-id:integer, post-id:integer)
+Comments (user-id:integer, post-id:integer, description:string)
 Belongs to User
 Belongs to Post
 
