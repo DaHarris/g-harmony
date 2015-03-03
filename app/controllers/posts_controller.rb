@@ -47,6 +47,14 @@ class PostsController < ApplicationController
     redirect_to root_path, notice: "Post was successfully destroyed."
   end
 
+  def like
+    @post = Post.find(params[:post_id])
+    @like = Like.new()
+    @like.post_id = @post.id
+    @like.save
+    redirect_to root_path, notice: "Liked!"
+  end
+
   private
 
   def post_params
