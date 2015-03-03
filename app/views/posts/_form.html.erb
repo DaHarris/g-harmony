@@ -12,5 +12,10 @@
   <%= f.label :description %>
   <%= f.text_area :description %>
   <br>
+  <% Tag.all.each do |tag| %>
+  <%= f.label "#{tag.title}" %>
+    <input type="checkbox" name="tag_titles[]" value=<%= tag.id %> />
+    <br>
+  <% end %>
   <%= f.submit %>
 <% end %>

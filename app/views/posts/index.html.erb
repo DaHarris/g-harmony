@@ -10,5 +10,10 @@
       <li><%= post.code %></li>
     <% end %>
     <li><%= post.description %></li>
+    <ul> <h5>Tags</h5>
+      <% post.tags.each do |tag| %>
+        <li><%= tag.title %></li>
+      <% end %>
+    </ul>
   </ul>
 <% end %>
