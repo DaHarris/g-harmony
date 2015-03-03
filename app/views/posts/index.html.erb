@@ -4,7 +4,10 @@
 <br>
 <% @posts.each do |post| %>
   <ul> <h4><%= post.title %></h4>
-    <% if post.url != nil %>
+    <% if post.url != nil && post.code != nil%>
+      <li><%= post.url %></li>
+      <li><%= post.code %></li>
+    <% elsif post.url != nil %>
       <li><%= post.url %></li>
     <% else %>
       <li><%= post.code %></li>

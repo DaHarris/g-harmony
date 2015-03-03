@@ -4,6 +4,11 @@ class Post < ActiveRecord::Base
   has_many :likes
   before_save :timestamp
 
+  validates :title, :description, presence: true
+
+  validates :url, presence: true, if: ->(instance) { instance.code.blank? }
+  validates :code, presence: true, if: ->(instance) { instance.url.blank? }
+
   def timestamp
     self.timestamp_field = DateTime.now
   end

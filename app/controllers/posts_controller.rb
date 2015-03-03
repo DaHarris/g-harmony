@@ -14,7 +14,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    if @post.save
+    if @post.save && params[:tag_titles] != nil
       array = params[:tag_titles]
       array.each do |tag|
         ass = Assignment.new
