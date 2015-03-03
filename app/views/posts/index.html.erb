@@ -1,0 +1,14 @@
+<h1> POSTS!!!! </h1>
+<br>
+<%= link_to 'New Post', new_post_path %>
+<br>
+<% @posts.each do |post| %>
+  <ul> <h4><%= post.title %></h4>
+    <% if post.url != nil %>
+      <li><%= post.url %></li>
+    <% else %>
+      <li><%= post.code %></li>
+    <% end %>
+    <li><%= post.description %></li>
+  </ul>
+<% end %>
