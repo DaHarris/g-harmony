@@ -15,12 +15,8 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     if @post.save && params[:tag_titles] != nil
-      array = params[:tag_titles]
-      array.each do |tag|
-        ass = Assignment.new
-        ass.post_id = @post.id
-        ass.tag_id = Tag.find(tag).id
-        ass.save
+      params[:tag_titles].each do |tag|
+         Assignment.create(post_id: @post.id, tag_id: Tag.find(tag).id)
       end
       redirect_to root_path, notice: "Post was successfully created."
     else
