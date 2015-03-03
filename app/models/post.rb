@@ -2,6 +2,7 @@ class Post < ActiveRecord::Base
   has_many :assignments, dependent: :destroy
   has_many :tags, through: :assignments
   has_many :likes
+  belongs_to :user
   before_save :timestamp
 
   validates :title, :description, presence: true

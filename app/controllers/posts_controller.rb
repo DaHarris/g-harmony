@@ -45,10 +45,19 @@ class PostsController < ApplicationController
 
   def like
     @post = Post.find(params[:post_id])
-    @like = Like.new()
-    @like.post_id = @post.id
-    @like.save
+    @like = Like.create(post_id: @post.id, user_id: current_user.id)
     redirect_to root_path, notice: "Liked!"
+  end
+
+  helper_method :user_liked
+
+  def user_liked(post)
+    post.likes.each do |like|
+      if like.user_id == current_user.id
+        return false
+      end
+    end
+    return true
   end
 
   private

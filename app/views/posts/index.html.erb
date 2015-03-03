@@ -19,6 +19,10 @@
       <% end %>
     </ul>
   </ul>
-  <%= link_to 'Like Post', post_like_path(post) %>
+  <% if user_liked(post) %>
+    <%= link_to 'Like Post', post_like_path(post) %>
+  <% else %>
+    <h6>Liked</h6>
+  <% end %>
   <h6><%= post.likes.size %></h6>
 <% end %>
