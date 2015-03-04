@@ -33,18 +33,8 @@
    </nav>
 </div>
 
-<body>
-  <div class="row">
-    <div class="medium-3 columns">
-      <ul class="side-nav">
-        <% Tag.all.each do |tag| %>
-          <li><%= tag.title %></li>
-        <% end %>
-      </ul>
-    </div>
 
-    <%= yield %>
-  </div>
+  <%= yield %>
 
 </body>
 </html>
