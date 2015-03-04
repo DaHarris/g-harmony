@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       log_in @user
       redirect_to root_path, notice: "User was successfully Logged In!"
     else
-      @user.errors[:base] << "User/Password incorrect"
+      flash[:notice] = "Incorrect Login Credentials."
       render :new
     end
   end

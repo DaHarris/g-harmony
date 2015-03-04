@@ -38,3 +38,6 @@ Belongs to Post
 3. Recent Posts Feed
 Tags on Left
 Sort By: Recent, Likes
+
+Admin
+seed for admin credentials

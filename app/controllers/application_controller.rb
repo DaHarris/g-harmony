@@ -11,10 +11,11 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user
 
-  # admin idea
-  # def current_admin
-  #   @current_user.admin
-  # end
+
+  def admin_user
+    return unless !current_user.admin?
+    redirect_to login_path
+  end
 
   def logged_in?
     if current_user.nil?

@@ -1,4 +1,12 @@
-
+<% if @post.errors.any? %>
+  <div data-alert class="alert-box">
+    There were errors on the page:
+      <% @post.errors.full_messages.each do |msg| %>
+        <li class="errors"><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 
 <%= form_for @post do |f| %>
 
@@ -14,14 +22,35 @@
   <%= f.label :description %>
   <%= f.text_area :description %>
   <br>
-  <% Tag.all.each do |tag| %>
-  <%= f.label "#{tag.title}" %>
-    <% if @post.tags.find_by_title(tag.title) %>
-      <input type="checkbox" checked="checked" name="tag_titles[]" value=<%= tag.id %> />
-    <% else %>
-      <input type="checkbox" name="tag_titles[]" value=<%= tag.id %> />
-    <% end %>
-    <br>
+
+  Select one or more tags:
+  <hr>
+  <% Tag.all.each_with_index do |tag, i| %>
+    <div class="medium-3 columns">
+      <%= f.label "#{tag.title}" %>
+      <% if @post.tags.find_by_title(tag.title) %>
+        <input type="checkbox" checked="checked" name="tag_titles[]" value=<%= tag.id %> />
+      <% else %>
+        <input type="checkbox" name="tag_titles[]" value=<%= tag.id %> />
+      <% end %>
+    </div>
   <% end %>
-  <%= f.submit %>
+
+  <a href="#" data-reveal-id="myModal">New Tag</a>
+
+<div id="myModal" class="reveal-modal" data-reveal>
+  <h2>New Tag</h2>
+  <%= form_for (Tag.new) do |f| %>
+    <%= f.label :title %>
+    <%= f.text_area :title %>
+    <br>
+    <%= f.submit class: "button" %>
+  <% end %>
+  <a class="close-reveal-modal">&#215;</a>
+</div>
+
+
+  <hr>
+  <%= f.submit class: "button" %>
+  <%= link_to 'Back Home', root_path, class: "button alert"%>
 <% end %>
