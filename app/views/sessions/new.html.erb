@@ -6,6 +6,12 @@
         <h1>Log In Please :-)</h1>
       </div>
 
+      <% if notice %>
+        <div data-alert class="alert-box">
+          <%= notice %>
+        </div>
+      <% end %>
+
       <hr>
 
       <%= form_tag login_path do %>
