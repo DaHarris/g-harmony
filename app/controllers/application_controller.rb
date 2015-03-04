@@ -14,11 +14,6 @@ class ApplicationController < ActionController::Base
   def admin_user
     return unless !current_user.admin?
     redirect_to login_path
-    # @user = User.find_by(username: params[:username])
-    # if @user && @user.authenticate(params[:admin])
-    # else
-    #   redirect_to login_path
-    # end
   end
 
   def logged_in?

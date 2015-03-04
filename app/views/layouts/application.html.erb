@@ -13,14 +13,16 @@
 <% end %>
 
 <% if current_user %>
-<%= current_user.username %>
-<%= link_to 'Sign Out', logout_path %>
-<%= link_to 'Users', users_path %>
-
-<% else %>
-<%= link_to 'Sign Up', signup_path %>
-<%= link_to 'Sign In', login_path %>
+    <%= current_user.username %>
+    <%= link_to 'Sign Out', logout_path %>
+    <% if current_user.admin %>
+      <%= link_to "Users", users_path %>
+    <% end %>
+  <% else %>
+    <%= link_to 'Sign Up', signup_path %>
+    <%= link_to 'Sign In', login_path %>
 <% end %>
+
 
 <%= yield %>
 
