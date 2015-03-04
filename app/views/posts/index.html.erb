@@ -19,6 +19,7 @@
       <div class="head">
         <h4><%= post.title %></h4>
       </div>
+
       <div class="edit">
         <div class="text-right">
           <div class="button small success">
@@ -42,6 +43,9 @@
           <% post.tags.each do |tag| %>
             <%= tag.title %>
           <% end %>
+          <div class="time">
+            <%= post.timestamp_field.strftime("%d/%m/%y") %>
+          </div>
         </div>
 
       <div class="likes">
