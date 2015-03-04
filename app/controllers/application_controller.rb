@@ -13,8 +13,12 @@ class ApplicationController < ActionController::Base
 
 
   def logged_in?
-    !current_user.nil?
+    if current_user.nil?
+      redirect_to login_path
+    end
   end
+
+  helper_method :logged_in?
 
   def log_in(user)
     session[:user_id] = user.id
