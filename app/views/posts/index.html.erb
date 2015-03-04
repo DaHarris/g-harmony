@@ -2,7 +2,41 @@
 <br>
 <%= link_to 'New Post', new_post_path %>
 <br>
+
+<!-- Sort by Likes -->
 <% @posts.each do |post| %>
+<% @likes_hash[post.id] = post.likes.size %>
+<% end %>
+
+<% @likes_hash.sort_by{|p,l| l}.reverse.each do |p,l| %>
+  <ul> <h4><%= Post.find(p).title %></h4>
+    <%= link_to 'Edit Post', edit_post_path(Post.find(p)) %>
+    <% if Post.find(p).url != nil && Post.find(p).code != nil%>
+      <li><%= Post.find(p).url %></li>
+      <li><%= Post.find(p).code %></li>
+    <% elsif Post.find(p).url != nil %>
+      <li><%= Post.find(p).url %></li>
+    <% else %>
+      <li><%= Post.find(p).code %></li>
+    <% end %>
+    <li><%= Post.find(p).description %></li>
+    <ul> <h5>Tags</h5>
+      <% Post.find(p).tags.each do |tag| %>
+        <li><%= tag.title %></li>
+      <% end %>
+    </ul>
+  </ul>
+  <% if user_liked(Post.find(p)) %>
+    <%= link_to 'Like Post', post_like_path(Post.find(p)) %>
+  <% else %>
+    <h6>Liked</h6>
+  <% end %>
+  <h6><%= l %></h6>
+  <hr>
+<% end %>
+
+<!-- Sort by Most Recent -->
+<!-- <% @posts.order('timestamp_field DESC').each do |post| %>
   <ul> <h4><%= post.title %></h4>
     <%= link_to 'Edit Post', edit_post_path(post) %>
     <% if post.url != nil && post.code != nil%>
@@ -27,4 +61,4 @@
   <% end %>
   <h6><%= post.likes.size %></h6>
   <hr>
-<% end %>
+<% end %> -->
