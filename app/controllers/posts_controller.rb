@@ -4,9 +4,16 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all
+    @posts = @posts.order('timestamp_field DESC')
+    if params[:most_likes]
+      @posts = @posts.sort_by{|post| post.likes.length }.reverse
+    end
+    if params[:most_recent]
+      @posts = @posts.order('timestamp_field DESC')
+    end
+
   end
   
-
   def show
     @post = Post.find(params[:id])
   end
