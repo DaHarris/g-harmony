@@ -44,6 +44,11 @@ li.errors {
   display: inline-block;
 }
 
+.button-group > li .button {
+  margin-left: 20px;
+  border-left: 20px solid;
+}
+
 .tags {
   padding-left: 40px;
   display: inline-block;

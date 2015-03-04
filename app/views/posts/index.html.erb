@@ -19,11 +19,12 @@
       <h1>POSTS!</h1>
     </div>
     <br>
-    <div class="button small right">
-      <%= link_to 'New Post', new_post_path %>
-      <%= link_to "Most Likes", posts_path(:most_likes => true) %>
-      <%= link_to "Recent Posts", posts_path(:most_recent => true) %>
-    </div>
+
+    <ul class="button-group">
+      <li><%= link_to 'New Post', new_post_path, class: "button small" %></li>
+      <li><%= link_to "Most Likes", posts_path(:most_likes => true), class: "button small" %></li>
+      <li><%= link_to "Recent Posts", posts_path(:most_recent => true), class: "button small" %></li>
+    </ul>
     <hr>
     <br>
     <% @posts.each do |post| %>
@@ -36,13 +37,19 @@
           <h4><%= post.title %></h4>
         </div>
 
-        <div class="edit">
-          <div class="text-right">
-            <div class="button small success">
-              <%= link_to 'Edit Post', edit_post_path(post) %>
+        <% if @current_user.posts.find_by_user_id(post.user_id) %>
+          <div class="edit">
+            <div class="text-right">
+              <div class="button small success">
+                <%= link_to 'Edit Post', edit_post_path(post) %>
+              </div>
+              <div class="button small alert">
+                <%= link_to 'Delete Post', post_path(post), method: :delete, data: {confirm: 'Are you sure?'} %>
+              </div>
             </div>
           </div>
-        </div>
+        <% end %>
+
 
         <% if post.url != '' && post.code != '' %>
           <li><a href=<%= post.url %> ><%= post.url %></a></li>
@@ -64,15 +71,15 @@
             </div>
           </div>
 
-        <div class="likes">
-          <% if user_liked(post) %>
-            <div class="button small info">
-              <%= link_to 'Like Post', post_like_path(post) %>
-            </div>
-          <% else %>
-            Liked
-          <% end %>
-        </div>
+          <div class="likes">
+            <% if user_liked(post) %>
+              <div class="button small info">
+                <%= link_to 'Like Post', post_like_path(post) %>
+              </div>
+            <% else %>
+              Liked
+            <% end %>
+          </div>
       <hr>
     <% end %>
   </div>

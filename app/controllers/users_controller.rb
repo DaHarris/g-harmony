@@ -12,7 +12,8 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    if current_user.admin?
+    @user.admin = false
+    if current_user && current_user.admin?
       @user.save
         redirect_to users_path
     elsif @user.save
