@@ -28,6 +28,11 @@
             <li class="active"><%= link_to 'Signin', login_path %></li>
             <li><%= link_to 'Signup', signup_path %></li>
           <% end %>
+          <% if current_user %>
+            <% if current_user.admin %>
+              <li><%= link_to 'Users', users_path %></li>
+            <% end %>
+          <% end %>
        </ul>
      </section>
    </nav>
@@ -35,6 +40,10 @@
 
 
   <%= yield %>
-
+  <script src="/js/foundation.min.js"></script>
+  <script src="/js/vendor/jquery.js"></script>
+  <script src="/js/vendor/fastclick.js"></script>
+  <script>
+    $(document).foundation();
 </body>
 </html>
