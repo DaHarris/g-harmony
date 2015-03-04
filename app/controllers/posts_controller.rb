@@ -30,7 +30,12 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    if @post.update(post_params)
+    if @post.update(post_params)&& params[:tag_titles] != nil
+      params[:tag_titles].each do |tag|
+        if !@post.tags.find_by_title(Tag.find(tag).title)
+          Assignment.create(post_id: @post.id, tag_id: Tag.find(tag).id)
+        end
+      end
       redirect_to root_path, notice: "Post was successfully updated."
     else
       render :edit

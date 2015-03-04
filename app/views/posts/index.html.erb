@@ -4,6 +4,7 @@
 <br>
 <% @posts.each do |post| %>
   <ul> <h4><%= post.title %></h4>
+    <%= link_to 'Edit Post', edit_post_path(post) %>
     <% if post.url != nil && post.code != nil%>
       <li><%= post.url %></li>
       <li><%= post.code %></li>
@@ -25,4 +26,5 @@
     <h6>Liked</h6>
   <% end %>
   <h6><%= post.likes.size %></h6>
+  <hr>
 <% end %>

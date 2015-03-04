@@ -16,7 +16,11 @@
   <br>
   <% Tag.all.each do |tag| %>
   <%= f.label "#{tag.title}" %>
-    <input type="checkbox" name="tag_titles[]" value=<%= tag.id %> />
+    <% if @post.tags.find_by_title(tag.title) %>
+      <input type="checkbox" checked="checked" name="tag_titles[]" value=<%= tag.id %> />
+    <% else %>
+      <input type="checkbox" name="tag_titles[]" value=<%= tag.id %> />
+    <% end %>
     <br>
   <% end %>
   <%= f.submit %>
