@@ -52,14 +52,14 @@
 
 
         <% if post.url != '' && post.code != '' %>
-          <li><a href=<%= post.url %> ><%= post.url %></a></li>
-          <li><%= post.code %></li>
+          <p><a href=<%= post.url %> ><%= post.url %></a><p>
+          <div class="panel code"><p><%= post.code %></p></div>
         <% elsif post.url != '' %>
-          <li><a href=<%= post.url %> ><%= post.url %></a></li>
+          <p><a href=<%= post.url %> ><%= post.url %></a></p>
         <% else %>
-          <li><%= post.code %></li>
+          <div class="panel code"> <p><%= post.code %></p> </div>
         <% end %>
-        <li><%= post.description %></li>
+        <p>Description: <%= post.description %></p>
       </ul>
 
           <div class="tags">
