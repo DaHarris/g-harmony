@@ -35,6 +35,21 @@
       <% end %>
     </div>
   <% end %>
+
+  <a href="#" data-reveal-id="myModal">New Tag</a>
+
+<div id="myModal" class="reveal-modal" data-reveal>
+  <h2>New Tag</h2>
+  <%= form_for (Tag.new) do |f| %>
+    <%= f.label :title %>
+    <%= f.text_area :title %>
+    <br>
+    <%= f.submit class: "button" %>
+  <% end %>
+  <a class="close-reveal-modal">&#215;</a>
+</div>
+
+
   <hr>
   <%= f.submit class: "button" %>
   <%= link_to 'Back Home', root_path, class: "button alert"%>

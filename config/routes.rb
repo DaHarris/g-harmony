@@ -3,6 +3,8 @@ Rails.application.routes.draw do
     get '/like' => 'posts#like'
   end
 
+  resources :tags
+
 root 'posts#index'
 
 resources :users
