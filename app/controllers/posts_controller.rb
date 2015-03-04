@@ -57,9 +57,11 @@ class PostsController < ApplicationController
   helper_method :user_liked
 
   def user_liked(post)
-    post.likes.each do |like|
-      if like.user_id == current_user.id
-        return false
+    if current_user
+      post.likes.each do |like|
+        if like.user_id == current_user.id
+          return false
+        end
       end
     end
     return true

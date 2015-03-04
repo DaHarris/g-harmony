@@ -1,1 +1,62 @@
 /*= require foundation */
+
+@import url(http://fonts.googleapis.com/css?family=Montserrat|Raleway);
+
+.side-nav {
+  padding-top: 120px;
+}
+
+.header {
+  padding-top: 50px;
+}
+
+.button a {
+  font-family: 'Raleway', sans-serif;
+  color: #F6EFEE;
+}
+
+.likeh {
+  display: inline-block;
+}
+
+.head {
+  display: inline-block;
+}
+
+.edit {
+  float: right;
+  display: inline-block;
+}
+
+.tags {
+  padding-left: 40px;
+  display: inline-block;
+  word-spacing: 40px;
+  font-family: 'Raleway', sans-serif;
+
+}
+
+.likes {
+  float: right;
+  display: inline-block;
+}
+
+h1 {
+  font-family: 'Montserrat', sans-serif;
+}
+
+h4 {
+  font-family: 'Montserrat', sans-serif;
+}
+
+p {
+  font-family: 'Raleway', sans-serif;
+}
+
+a {
+  font-family: 'Raleway', sans-serif;
+}
+
+li {
+  font-family: 'Raleway', sans-serif;
+}
