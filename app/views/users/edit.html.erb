@@ -1,2 +1,26 @@
-<h1>Edit User</h1>
-<%= render 'form' %>
+<div class="row">
+  <div class="medium-8 medium-offset-2 columns">
+    <div class="panel">
+
+      <div class="text-center">
+        <h1>Edit User</h1>
+      </div>
+
+      <% if @user.errors.any? %>
+        <div data-alert class="alert-box">
+          There were errors on the page:
+            <% @user.errors.full_messages.each do |msg| %>
+              <li class="errors"><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <hr>
+
+      <%= render 'form' %>
+
+
+    </div>
+  </div>
+</div>
