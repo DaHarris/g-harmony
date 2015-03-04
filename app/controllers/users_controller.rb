@@ -13,7 +13,6 @@ class UsersController < ApplicationController
     log_in @user
       redirect_to root_path, notice: "Congratulations, User was successfully created!"
     else
-      @user.errors[:base] << "Please try again"
       render :new
     end
   end
