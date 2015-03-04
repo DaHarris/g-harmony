@@ -1,20 +1,33 @@
-<%= form_for @user do |f| %>
+<div class="row">
+  <div class="medium-8 medium-offset-2 columns">
+    <div class="panel">
 
-<%= f.label :first_name %>
-<%= f.text_field :first_name %>
+      <div class="text-center">
+        <h1>Sign up!</h1>
+      </div>
 
-<%= f.label :last_name %>
-<%= f.text_field :last_name %>
+      <hr>
 
-<%= f.label :username %>
-<%= f.text_field :username %>
+      <%= form_for @user do |f| %>
 
-<%= f.label :password_confirmation %>
-<%= f.password_field :password %>
+        <%= f.label :first_name %>
+        <%= f.text_field :first_name %>
 
-<%= f.label :password_confirmation %>
-<%= f.password_field :password %>
+        <%= f.label :last_name %>
+        <%= f.text_field :last_name %>
 
-<%= f.submit %>
+        <%= f.label :username %>
+        <%= f.text_field :username %>
 
-<% end %>
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password %>
+
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password %>
+
+        <%= f.submit class: "button" %>
+
+      <% end %>
+    </div>
+  </div>
+</div>
