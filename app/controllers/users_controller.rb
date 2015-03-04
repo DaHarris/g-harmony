@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action :admin_user, only: [:edit, :update, :destroy, :index]
+  before_action :admin_user, only: [:index]
 
   def index
     @users = User.all
@@ -26,21 +26,45 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    if @user.id == current_user.id || current_user.admin
+    else
+      redirect_to root_path, notice: "Cannot access resource."
+    end
   end
 
   def update
     @user = User.find(params[:id])
-    if @user.update(user_params)
-      redirect_to users_path, notice: "User was successfully updated!"
+    if @user.id == current_user.id || current_user.admin
+      if @user.update(user_params)
+        if current_user.admin
+          redirect_to users_path, notice: "User was successfully updated!"
+        else
+          redirect_to root_path, notice: "User was successfully updated!"
+        end
+      else
+        render :edit
+      end
     else
-      render :edit
+      redirect_to root_path, notice: "Cannot access resource."
     end
   end
 
   def destroy
     @user = User.find(params[:id])
-    @user.destroy
-    redirect_to users_path, notice: "User was successfully destroyed!"
+    if @user.id == current_user.id || current_user.admin
+      @user.destroy
+      if current_user && current_user.admin
+      else
+        session[:user_id] = nil
+      end
+      if current_user && current_user.admin
+        redirect_to users_path, notice: "User was successfully destroyed!"
+      else
+        redirect_to login_path, notice: "User was successfully destroyed!"
+      end
+    else
+      redirect_to root_path, notice: "Cannot access resource."
+    end
   end
 
 # Might need it later on
