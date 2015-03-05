@@ -15,6 +15,7 @@ User.create!(
   admin: true
 )
 
+
 Tag.create!(
   title: "Rails"
 )
