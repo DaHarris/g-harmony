@@ -4,7 +4,7 @@
 @import url(http://fonts.googleapis.com/css?family=Montserrat|Raleway);
 
 .side-nav {
-  padding-top: 120px;
+  padding-top: 50px;
 }
 // .medium-3 {
 //   background-color: #018dbb;
@@ -15,7 +15,7 @@
 #side-nav-blue {
   background-color: #018dbb;
   width: 25%;
-  position: absolute;
+  position: fixed;
   left: 0px;
   height: 100%;
   box-shadow: 1px 1px 2px #B0B0B0;
@@ -26,6 +26,10 @@
 .medium-9 {
   z-index: 0;
   float: right;
+}
+
+.row {
+  height: 100%;
 }
 
 body{
@@ -143,4 +147,8 @@ li {
 .alert-text {
   margin: 0 0 0 390px;
   width: 500px;
+}
+
+.alert-box {
+  border-width: 0px;
 }
