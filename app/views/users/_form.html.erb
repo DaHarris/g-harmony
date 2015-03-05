@@ -15,6 +15,11 @@
   <%= f.label :password_confirmation %>
   <%= f.password_field :password %>
 
+  <div>
+  <%= f.label :monitor %>
+  <%= f.check_box :monitor %>
+  </div>
+
   <%= f.submit class: "button" %>
 
 <% end %>
