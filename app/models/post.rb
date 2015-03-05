@@ -1,4 +1,8 @@
 class Post < ActiveRecord::Base
+
+  markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML)
+  before_save { |post| post.code = markdown.render(post.code) }
+
   has_many :assignments, dependent: :destroy
   has_many :tags, through: :assignments
   has_many :likes
@@ -6,7 +10,8 @@ class Post < ActiveRecord::Base
   before_save :timestamp
 
   validates :title, :description, presence: true
-  validates :url, presence: true
+
+  validates :url, url: true
 
   validates :url, presence: true, if: ->(instance) { instance.code.blank? }
   validates :code, presence: true, if: ->(instance) { instance.url.blank? }
@@ -14,5 +19,4 @@ class Post < ActiveRecord::Base
   def timestamp
     self.timestamp_field = DateTime.now
   end
-
 end

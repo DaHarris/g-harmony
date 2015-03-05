@@ -65,8 +65,10 @@ class PostsController < ApplicationController
 
   def destroy
     @post = Post.find(params[:id])
+    if can_change(@post)
     @post.destroy
     redirect_to root_path, notice: "Post was successfully destroyed."
+    end
   end
 
   def like
