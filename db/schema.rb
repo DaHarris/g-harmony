@@ -11,53 +11,51 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 20150305190056) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+ # These are extensions that must be enabled in order to support this database
+ enable_extension "plpgsql"
 
-  create_table "assignments", force: :cascade do |t|
-    t.integer "post_id"
-    t.integer "tag_id"
-  end
+ create_table "assignments", force: :cascade do |t|
+   t.integer "post_id"
+   t.integer "tag_id"
+ end
 
-  add_index "assignments", ["post_id"], name: "index_assignments_on_post_id", using: :btree
-  add_index "assignments", ["tag_id"], name: "index_assignments_on_tag_id", using: :btree
+ add_index "assignments", ["post_id"], name: "index_assignments_on_post_id", using: :btree
+ add_index "assignments", ["tag_id"], name: "index_assignments_on_tag_id", using: :btree
 
-  create_table "comments", force: :cascade do |t|
-    t.string  "description"
-    t.integer "user_id"
-    t.integer "post_id"
-  end
+ create_table "comments", force: :cascade do |t|
+   t.string  "description"
+   t.integer "user_id"
+   t.integer "post_id"
+ end
 
-  create_table "likes", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "post_id"
-  end
+ create_table "likes", force: :cascade do |t|
+   t.integer "user_id"
+   t.integer "post_id"
+ end
 
-  create_table "posts", force: :cascade do |t|
-    t.string   "url"
-    t.string   "code"
-    t.string   "description"
-    t.string   "title"
-    t.datetime "timestamp_field"
-    t.integer  "user_id"
-  end
+ create_table "posts", force: :cascade do |t|
+   t.string   "url"
+   t.string   "code"
+   t.string   "description"
+   t.string   "title"
+   t.datetime "timestamp_field"
+ end
 
-  create_table "tags", force: :cascade do |t|
-    t.string "title"
-  end
+ create_table "tags", force: :cascade do |t|
+   t.string "title"
+ end
 
-  create_table "users", force: :cascade do |t|
-    t.string  "first_name"
-    t.string  "last_name"
-    t.string  "username"
-    t.string  "password_digest"
-    t.boolean "admin",           default: false, null: false
-    t.boolean "monitor",         default: false, null: false
-  end
+ create_table "users", force: :cascade do |t|
+   t.string  "first_name"
+   t.string  "last_name"
+   t.string  "username"
+   t.string  "password_digest"
+   t.boolean "admin",           default: false, null: false
+   t.boolean "monitor",         default: false, null: false
+ end
 
-  add_foreign_key "assignments", "posts"
-  add_foreign_key "assignments", "tags"
+ add_foreign_key "assignments", "posts"
+ add_foreign_key "assignments", "tags"
 end
