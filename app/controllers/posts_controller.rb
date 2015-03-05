@@ -1,7 +1,6 @@
 class PostsController < ApplicationController
 
   before_action :logged_in?
-  before_action :monitor_user, only: [:edit, :update, :destroy, :index]
 
   def index
     @posts = Post.all
@@ -40,19 +39,27 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    if can_change(@post)
+    else
+      redirect_to root_path
+    end
   end
 
   def update
     @post = Post.find(params[:id])
-    if @post.update(post_params) && params[:tag_titles] != nil
-      params[:tag_titles].each do |tag|
-        if !@post.tags.find_by_title(Tag.find(tag).title)
-          Assignment.create(post_id: @post.id, tag_id: Tag.find(tag).id)
+    if can_change(@post)
+      if @post.update(post_params) && params[:tag_titles] != nil
+        params[:tag_titles].each do |tag|
+          if !@post.tags.find_by_title(Tag.find(tag).title)
+            Assignment.create(post_id: @post.id, tag_id: Tag.find(tag).id)
+          end
         end
+        redirect_to root_path, notice: "Post was successfully updated."
+      else
+        render :edit
       end
-      redirect_to root_path, notice: "Post was successfully updated."
     else
-      render :edit
+      redirect_to root_path
     end
   end
 
