@@ -14,3 +14,13 @@ User.create!(
   password_confirmation: '1234',
   admin: true
 )
+
+User.create!(
+  first_name: 'she',
+  last_name: 'harmonie',
+  username: 'monitor',
+  password: '1234',
+  password_confirmation: '1234',
+  admin: false,
+  monitor: true
+)
