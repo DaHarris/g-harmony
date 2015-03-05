@@ -26,7 +26,7 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    if @user.id == current_user.id || current_user.admin
+    if @user.id == current_user.id || current_user.admin || current_user.monitor
     else
       redirect_to root_path, notice: "Cannot access resource."
     end
@@ -34,7 +34,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.id == current_user.id || current_user.admin
+    if @user.id == current_user.id || current_user.admin || current_user.monitor
       if @user.update(user_params)
         if current_user.admin
           redirect_to users_path, notice: "User was successfully updated!"
@@ -74,6 +74,6 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :username, :password, :password_confirmation, :admin)
+    params.require(:user).permit(:first_name, :last_name, :username, :password, :password_confirmation, :admin, :monitor)
   end
 end
