@@ -13,8 +13,11 @@ class ApplicationController < ActionController::Base
 
 
   def admin_user
-    return if current_user && current_user.admin?
-    redirect_to login_path
+    if current_user && current_user.admin?
+      return true
+    else
+      return false
+    end
   end
 
 
