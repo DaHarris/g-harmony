@@ -12,6 +12,9 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    if !admin_user
+      @user.monitor = false
+    end
     @user.admin = false
     if current_user && current_user.admin?
       @user.save
@@ -34,6 +37,9 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+    if !admin_user
+      @user.monitor = false
+    end
     if @user.id == current_user.id || current_user.admin || current_user.monitor
       if @user.update(user_params)
         if current_user.admin
