@@ -16,6 +16,8 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @tag = Tag.find(params[:id])
+    @posts = @tag.posts
   end
 
   def new
