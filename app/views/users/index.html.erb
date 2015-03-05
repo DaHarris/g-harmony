@@ -21,7 +21,7 @@
           <th width="200px">User Name</th>
           <th width="200px">First Name</th>
           <th width="200px">Last Name</th>
-          <th></th>
+          <th width="200px">Monitor</th>
           <th></th>
         </tr>
       </thead>
@@ -31,6 +31,7 @@
           <td> <%= link_to user.username, user_path(user) %></td>
           <td> <%= user.first_name %></td>
           <td> <%= user.last_name %></td>
+          <td> <%= user.monitor %></td>
           <td> <%= link_to 'Edit', edit_user_path(user) %></td>
           <td> <%= link_to 'Delete', user_path(user), method: :delete, data: {confirm: 'Are you sure?'} %></td>
         </tr>
