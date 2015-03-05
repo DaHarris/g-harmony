@@ -39,6 +39,6 @@ Tag.create!(
 Tag.create!(
   title: "Interviews"
 )
-vTag.create!(
+Tag.create!(
   title: "ERB"
 )
