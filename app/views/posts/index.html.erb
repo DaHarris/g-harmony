@@ -56,11 +56,11 @@
 
         <% if post.url != '' && post.code != '' %>
           <p><a href=<%= post.url %> ><%= post.url %></a><p>
-          <div class="panel code"><p><%= post.code %></p></div>
+          <div class="panel code"><p><%= Redcarpet::Render::SmartyPants.render(post.code).html_safe %></p></div>
         <% elsif post.url != '' %>
           <p><a href=<%= post.url %> ><%= post.url %></a></p>
         <% else %>
-          <div class="panel code"> <p><%= post.code %></p> </div>
+          <div class="panel code"> <p><%= Redcarpet::Render::SmartyPants.render(post.code).html_safe %></p> </div>
         <% end %>
         <p>Description: <%= simple_format(post.description) %></p>
       </ul>

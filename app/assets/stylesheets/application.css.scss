@@ -17,7 +17,10 @@ li.errors {
 
 .panel.code {
   margin-top: 0px;
+  max-width: 800px;
+  overflow: auto;
 }
+
 
 .header {
   padding-top: 50px;
