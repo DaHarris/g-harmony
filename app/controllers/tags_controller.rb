@@ -13,6 +13,11 @@ class TagsController < ApplicationController
     end
   end
 
+  def show
+    @tag = Tag.find(params[:id])
+    @posts = @tag.posts
+  end
+
   private
 
   def tag_params

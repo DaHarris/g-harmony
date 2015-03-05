@@ -11,9 +11,17 @@ class PostsController < ApplicationController
     if params[:most_recent]
       @posts = @posts.order('timestamp_field DESC')
     end
-
+  #   if Tag.find(params[:format])
+  #     @assignments = Assignment.find_by_tag_id(params[:format])
+  #     puts "HELLO"*6
+  #     puts @assignments
+  #     @posts = []
+  #       @assignments.each do |assignment|
+  #           @posts << Assignment.find_by(assignment.post_id)
+  #       end
+  #   end
   end
-  
+
   def show
     @post = Post.find(params[:id])
   end
