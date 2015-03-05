@@ -40,7 +40,7 @@
           <h4><%= post.title %></h4>
         </div>
 
-        <% if @current_user.admin || @current_user.posts.find_by_user_id(post.user_id) %>
+        <% if @current_user.admin || @current_user.posts.find_by_user_id(post.user_id) || @current_user.monitor %>
           <div class="edit">
             <div class="text-right">
               <div class="button small success">

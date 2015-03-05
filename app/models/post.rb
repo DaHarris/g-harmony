@@ -10,6 +10,7 @@ class Post < ActiveRecord::Base
   before_save :timestamp
 
   validates :title, :description, presence: true
+
   validates :url, url: true
 
   validates :url, presence: true, if: ->(instance) { instance.code.blank? }
