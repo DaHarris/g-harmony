@@ -11,6 +11,7 @@ class PostsController < ApplicationController
     if params[:most_recent]
       @posts = @posts.order('timestamp_field DESC')
     end
+
   end
 
   def show
