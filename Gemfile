@@ -35,6 +35,8 @@ gem 'foundation-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'validate_url'
+
 group :production, :staging do
   gem 'rails_12factor'
 end

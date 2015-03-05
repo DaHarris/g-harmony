@@ -18,6 +18,11 @@ class ApplicationController < ActionController::Base
   end
 
 
+  def monitor_user
+    return unless !current_user.monitor?
+    redirect_to login_path
+  end
+
   def logged_in?
     if current_user.nil?
       redirect_to login_path

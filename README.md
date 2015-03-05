@@ -39,5 +39,5 @@ Belongs to Post
 Tags on Left
 Sort By: Recent, Likes
 
-Admin
-seed for admin credentials
+Admin/Monitor
+seed for admin/monitor credentials

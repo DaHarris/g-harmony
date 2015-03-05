@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
 
   before_action :logged_in?
+  before_action :monitor_user, only: [:edit, :update, :destroy, :index]
 
   def index
     @posts = Post.all
