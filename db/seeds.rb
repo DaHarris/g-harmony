@@ -14,3 +14,31 @@ User.create!(
   password_confirmation: '1234',
   admin: true
 )
+
+Tag.create!(
+  title: "Rails"
+)
+Tag.create!(
+  title: "Ruby"
+)
+Tag.create!(
+  title: "Git"
+)
+Tag.create!(
+  title: "Terminal"
+)
+Tag.create!(
+  title: "CSS"
+)
+Tag.create!(
+  title: "HTML"
+)
+Tag.create!(
+  title: "SQL"
+)
+Tag.create!(
+  title: "Interviews"
+)
+vTag.create!(
+  title: "ERB"
+)
