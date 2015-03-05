@@ -26,6 +26,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
+    @post.user_id = current_user.id
     if @post.save && params[:tag_titles] != nil
       params[:tag_titles].each do |tag|
          Assignment.create(post_id: @post.id, tag_id: Tag.find(tag).id)
@@ -42,7 +43,7 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    if @post.update(post_params)&& params[:tag_titles] != nil
+    if @post.update(post_params) && params[:tag_titles] != nil
       params[:tag_titles].each do |tag|
         if !@post.tags.find_by_title(Tag.find(tag).title)
           Assignment.create(post_id: @post.id, tag_id: Tag.find(tag).id)
