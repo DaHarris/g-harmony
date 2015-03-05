@@ -6,6 +6,47 @@
 .side-nav {
   padding-top: 120px;
 }
+// .medium-3 {
+//   background-color: #018dbb;
+//   width: 130px;
+// }
+
+
+#side-nav-blue {
+  background-color: #018dbb;
+  width: 25%;
+  position: absolute;
+  left: 0px;
+  height: 100%;
+  box-shadow: 1px 1px 2px #B0B0B0;
+  float: left;
+  z-index: 0;
+}
+
+.medium-9 {
+  z-index: 0;
+  float: right;
+}
+
+body{
+  height: 100%;
+}
+
+
+
+.side-nav li a:not(.button) {
+  color: #FFFFFF;
+  // width: 200px;
+  // text-align: left;
+  // margin: 0 0 0 20px;
+  padding: 10px 0 0 67%;
+
+}
+
+.contain-to-grid{
+  box-shadow: 1px 1px 5px #888888;
+}
+
 
 li.errors {
   color: #F6EFEE;
