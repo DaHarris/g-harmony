@@ -15,7 +15,6 @@ User.create!(
   admin: true
 )
 
-<<<<<<< HEAD
 Tag.create!(
   title: "Rails"
 )
@@ -42,7 +41,8 @@ Tag.create!(
 )
 Tag.create!(
   title: "ERB"
-=======
+)
+
 User.create!(
   first_name: 'she',
   last_name: 'harmonie',
@@ -51,5 +51,4 @@ User.create!(
   password_confirmation: '1234',
   admin: false,
   monitor: true
->>>>>>> ty
 )
