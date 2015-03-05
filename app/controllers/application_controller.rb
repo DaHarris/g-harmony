@@ -18,9 +18,12 @@ class ApplicationController < ActionController::Base
   end
 
 
-  def monitor_user
-    return unless !current_user.monitor?
-    redirect_to login_path
+  def can_change(post)
+    if current_user.monitor? || current_user.admin? || current_user.posts.find_by_id(post.id)
+      true
+    else
+      false
+    end
   end
 
   def logged_in?

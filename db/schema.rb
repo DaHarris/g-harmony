@@ -58,4 +58,3 @@ ActiveRecord::Schema.define(version: 20150305190056) do
 
  add_foreign_key "assignments", "posts"
  add_foreign_key "assignments", "tags"
-end
