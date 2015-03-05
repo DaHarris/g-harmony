@@ -59,7 +59,7 @@
         <% else %>
           <div class="panel code"> <p><%= post.code %></p> </div>
         <% end %>
-        <p>Description: <%= post.description %></p>
+        <p>Description: <%= simple_format(post.description) %></p>
       </ul>
 
           <div class="tags">
