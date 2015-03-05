@@ -1,0 +1,86 @@
+<body>
+  <div class="row">
+    <div class="medium-3 columns">
+      <ul class="side-nav">
+        <% Tag.all.each do |tag| %>
+          <li><%= link_to tag.title, post_path(tag.id) %></li>
+        <% end %>
+      </ul>
+    </div>
+
+    <% if notice %>
+      <div data-alert class="alert-box">
+        <%= notice %>
+      </div>
+    <% end %>
+
+  <div class="medium-9 columns">
+    <div class="header">
+      <h1>Posts</h1>
+    </div>
+    <br>
+
+    <ul class="button-group">
+      <li><%= link_to 'New Post', new_post_path, class: "button small" %></li>
+      <li><%= link_to "Most Likes", posts_path(:most_likes => true), class: "button small" %></li>
+      <li><%= link_to "Recent Posts", posts_path(:most_recent => true), class: "button small" %></li>
+    </ul>
+    <hr>
+    <br>
+    <% @posts.each do |post| %>
+      <ul>
+
+        <div class="likeh">
+          <h6><%= post.likes.size %> &nbsp;&nbsp; - &nbsp;&nbsp; </h6>
+        </div>
+        <div class="head">
+          <h4><%= post.title %></h4>
+        </div>
+
+        <% if @current_user.posts.find_by_user_id(post.user_id) %>
+          <div class="edit">
+            <div class="text-right">
+              <div class="button small success">
+                <%= link_to 'Edit Post', edit_post_path(post) %>
+              </div>
+              <div class="button small alert">
+                <%= link_to 'Delete Post', post_path(post), method: :delete, data: {confirm: 'Are you sure?'} %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+
+
+        <% if post.url != '' && post.code != '' %>
+          <p><a href=<%= post.url %> ><%= post.url %></a><p>
+          <div class="panel code"><p><%= post.code %></p></div>
+        <% elsif post.url != '' %>
+          <p><a href=<%= post.url %> ><%= post.url %></a></p>
+        <% else %>
+          <div class="panel code"> <p><%= post.code %></p> </div>
+        <% end %>
+        <p>Description: <%= post.description %></p>
+      </ul>
+
+          <div class="tags">
+            <% post.tags.each do |tag| %>
+              <%= tag.title %>
+            <% end %>
+            <div class="time">
+              <%= post.timestamp_field.strftime("%d/%m/%y") %>
+            </div>
+          </div>
+
+          <div class="likes">
+            <% if user_liked(post) %>
+              <div class="button small info">
+                <%= link_to 'Like Post', post_like_path(post) %>
+              </div>
+            <% else %>
+              Liked
+            <% end %>
+          </div>
+      <hr>
+    <% end %>
+  </div>
+</div>
