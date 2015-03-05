@@ -76,7 +76,7 @@
 
           <div class="likes">
             <% if user_liked(post) %>
-              <div class="button small info">
+              <div class="button small info", id = "likes-button">
                 <%= link_to 'Like Post', post_like_path(post) %>
               </div>
             <% else %>
