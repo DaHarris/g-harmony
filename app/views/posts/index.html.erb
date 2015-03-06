@@ -2,6 +2,9 @@
   <div class="row">
     <div class="medium-3 columns" id="side-nav-blue">
       <ul class="side-nav">
+        <li><%= link_to "Most Likes", posts_path(:most_likes => true) %></li>
+        <li><%= link_to "Recent Posts", posts_path(:most_recent => true) %></li>
+        <hr>
         <% Tag.all.each do |tag| %>
           <li><%= link_to tag.title, post_path(tag.id) %></li>
         <% end %>
@@ -18,27 +21,68 @@
     <% end %>
 
   <div class="medium-9 columns">
-    <div class="header">
-      <h1>Posts</h1>
-    </div>
-    <br>
 
+    <br>
+    <br>
     <ul class="button-group">
       <li><%= link_to 'New Post', new_post_path, class: "button small" %></li>
-      <li><%= link_to "Most Likes", posts_path(:most_likes => true), class: "button small" %></li>
-      <li><%= link_to "Recent Posts", posts_path(:most_recent => true), class: "button small" %></li>
     </ul>
     <hr>
-    <br>
     <% @posts.each do |post| %>
       <ul>
 
-        <div class="likeh">
-          <h6><%= post.likes.size %><i class="fi-arrow-up"></i> &nbsp;&nbsp; - &nbsp;&nbsp; </h6>
+        <ul class="like-list">
+        <div class="likes">
+          <% if user_liked(post) %>
+              <%= link_to '<i class="fi-like size-36"></i>'.html_safe, post_like_path(post) %>
+          <% else %>
+          <i class="fi-like size-36" id="gray-liked"></i>
+          <% end %>
         </div>
+
+        <div class="likeh">
+          <h6><%= post.likes.size %></h6>
+        </div>
+
+      </ul>
         <div class="head">
           <h4><%= post.title %></h4>
         </div>
+
+        <div class="time">
+          - <%= post.timestamp_field.strftime("%d/%m/%y") %>
+        </div>
+
+        <div class="posted-by">
+          <i class="fi-torso-business size-24"></i>  <%= User.find(post.user_id).username %>
+        </div>
+
+        <% if post.url != '' && post.code != '' %>
+          <p><a href=<%= post.url %> target="_blank" ><%= post.url %></a><p>
+          <div class="titles">Code:</div>
+          <div class="panel code"><p><%= Redcarpet::Render::SmartyPants.render(post.code).html_safe %></p></div>
+        <% elsif post.url != '' %>
+          <p><a href=<%= post.url %> target="_blank" ><%= post.url %></a></p>
+        <% else %>
+          <div class="titles">Code:</div>
+          <div class="panel code"> <p><%= Redcarpet::Render::SmartyPants.render(post.code).html_safe %></p> </div>
+        <% end %>
+        <div class="titles">Description:</div>
+        <div class="panel code"><p><%= simple_format(post.description) %></p></div>
+      </ul>
+
+          <div class="tags">
+
+            <ul>
+              <div class="titles">Tags:</div>
+
+              <!-- <li class="tag-icon" style="margin: 10px 0 0 0;"><i class="fi-pricetag-multiple size-24"></i></li> -->
+              <% post.tags.each do |tag| %>
+              <li class="tag"></i><%= tag.title %></li>
+            <% end %>
+            </ul>
+          </div>
+          <br>
 
         <% if @current_user.admin || @current_user.posts.find_by_user_id(post.user_id) || @current_user.monitor %>
           <div class="edit">
@@ -52,37 +96,6 @@
             </div>
           </div>
         <% end %>
-
-
-        <% if post.url != '' && post.code != '' %>
-          <p><a href=<%= post.url %> target="_blank" ><%= post.url %></a><p>
-          <div class="panel code"><p><%= Redcarpet::Render::SmartyPants.render(post.code).html_safe %></p></div>
-        <% elsif post.url != '' %>
-          <p><a href=<%= post.url %> target="_blank" ><%= post.url %></a></p>
-        <% else %>
-          <div class="panel code"> <p><%= Redcarpet::Render::SmartyPants.render(post.code).html_safe %></p> </div>
-        <% end %>
-        <p>Description: <%= simple_format(post.description) %></p>
-      </ul>
-
-          <div class="tags">
-            <% post.tags.each do |tag| %>
-              <%= tag.title %>
-            <% end %>
-            <div class="time">
-              <%= post.timestamp_field.strftime("%d/%m/%y") %>
-            </div>
-          </div>
-
-          <div class="likes">
-            <% if user_liked(post) %>
-              <div class="button small info", id = "likes-button">
-                <%= link_to 'Like Post', post_like_path(post) %>
-              </div>
-            <% else %>
-              Liked
-            <% end %>
-          </div>
       <hr>
     <% end %>
   </div>

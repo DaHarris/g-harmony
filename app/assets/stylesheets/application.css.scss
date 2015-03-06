@@ -5,7 +5,7 @@
 @import 'foundation-icons';
 
 .side-nav {
-  padding-top: 50px;
+  padding-top: 40px;
 }
 // .medium-3 {
 //   background-color: #018dbb;
@@ -41,9 +41,6 @@ body{
 
 .side-nav li a:not(.button) {
   color: #FFFFFF;
-  // width: 200px;
-  // text-align: left;
-  // margin: 0 0 0 20px;
   padding: 10px 0 0 67%;
 
 }
@@ -58,7 +55,7 @@ li.errors {
 }
 
 .panel {
-  margin-top: 50px;
+  margin-top: 10px;
 }
 
 .panel.code {
@@ -79,12 +76,19 @@ li.errors {
 }
 
 .likeh {
+  float: right;
+  display: inline-block;
+  margin: 15px 10px 0 0;
+}
+
+.likes {
+  float: right;
   display: inline-block;
 }
 
 .head {
-  margin-top: 50px;
   display: inline-block;
+
 }
 
 .new {
@@ -104,11 +108,28 @@ li.errors {
 }
 
 .tags {
-  padding-left: 40px;
+  // padding-left: 40px;
   display: inline-block;
-  word-spacing: 40px;
+  word-spacing: 1px;
   font-family: 'Raleway', sans-serif;
 
+}
+
+.tag {
+  background-color: orange;
+  display: inline-block;
+  color: white;
+  padding: 5px 10px 5px 10px;
+  margin: 0 0 10px 0;
+}
+
+.tag-icon {
+  display: inline-block;
+  padding: 0 10px 0 10px;
+  margin: 1px 0 10px 0;
+  color: #919191;
+  background-color: #D5D5D5;
+  height: 35px;
 }
 
 .time {
@@ -116,15 +137,20 @@ li.errors {
   opacity: 0.5;
 }
 
+.posted-by {
+  display: inline-block;
+  opacity: 0.5;
+  padding: 0 0 0 15px;
+
+}
+
 #likes-button {
   background: orange;
 }
 
-.likes {
-  float: right;
-  display: inline-block;
+ul {
+  list-style-type: none;
 }
-
 h1 {
   font-family: 'Montserrat', sans-serif;
 }
@@ -152,4 +178,30 @@ li {
 
 .alert-box {
   border-width: 0px;
+}
+
+.size-12 { font-size: 12px; }
+.size-14 { font-size: 14px; }
+.size-16 { font-size: 16px; }
+.size-18 { font-size: 18px; }
+.size-21 { font-size: 21px; }
+.size-24 { font-size: 24px; }
+.size-36 { font-size: 36px; }
+.size-48 { font-size: 48px; }
+.size-60 { font-size: 60px; }
+.size-72 { font-size: 72px; }
+
+.like-list li {
+  display: inline-block;
+  float: right;
+}
+
+.titles {
+  color: #919191;
+  font-family: 'Raleway', sans-serif;
+  font-weight: bold;
+}
+
+#gray-liked {
+  color: #919191;
 }

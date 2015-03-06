@@ -15,9 +15,8 @@
     <% end %>
 
   <div class="medium-9 columns">
-    <div class="header">
-      <h1>Posts</h1>
-    </div>
+
+    <br>
     <br>
 
     <ul class="button-group">
@@ -30,11 +29,12 @@
     <% @posts.each do |post| %>
       <ul>
 
-        <div class="likeh">
-          <h6><%= post.likes.size %> &nbsp;&nbsp; - &nbsp;&nbsp; </h6>
-        </div>
+
         <div class="head">
           <h4><%= post.title %></h4>
+        </div>
+        <div class="likeh">
+          <h6><%= post.likes.size %> &nbsp;&nbsp; - &nbsp;&nbsp; </h6>
         </div>
 
         <% if @current_user.posts.find_by_user_id(post.user_id) %>
